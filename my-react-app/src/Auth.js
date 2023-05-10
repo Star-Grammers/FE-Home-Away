@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
-function Auth({ children }) {
+const Auth = ({ children }) => {
     const history = useHistory();
 
     const handleSignIn = async (email, password) => {

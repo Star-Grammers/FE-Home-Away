@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { AuthContext } from './Auth'
 
-function Signin() {
+const Signin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { handleSignIn } = useContext(AuthContext);

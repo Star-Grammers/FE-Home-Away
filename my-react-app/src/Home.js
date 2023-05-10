@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Home() {
+const Home = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1> This is Home Page of the Application.</h1>

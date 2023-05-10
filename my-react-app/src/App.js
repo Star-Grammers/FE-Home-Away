@@ -13,7 +13,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     )} />
 )
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <BrowserRouter>

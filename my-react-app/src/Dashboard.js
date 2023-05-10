@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from './Auth'
 
-function Dashboard() {
+const Dashboard = () => {
     const { handleLogout } = useContext(AuthContext)
     return (
         <div style={{ textAlign: 'center' }}>

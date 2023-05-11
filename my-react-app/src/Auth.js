@@ -34,11 +34,6 @@ const Auth = ({ children }) => {
         history.push("/signin")
     }
 
-    // return (
-    //     <AuthContext.Provider value={{ handleSignIn, handleLogout }}>
-    //         {children}
-    //     </AuthContext.Provider>
-    // )
     return (
         <AuthContext.Provider value={{ handleSignIn, handleLogout }}>
             {successMessage && <div>{successMessage}</div>}

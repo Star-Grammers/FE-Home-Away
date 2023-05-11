@@ -34,23 +34,6 @@ const LoginForm = () => {
         handleLogin(email, password);
     };
 
-    // return (
-    //     <form onSubmit={handleLoginSubmit}>
-    //         <input
-    //             type="email"
-    //             placeholder="Email"
-    //             value={email}
-    //             onChange={(e) => setEmail(e.target.value)}
-    //         />
-    //         <input
-    //             type="password"
-    //             placeholder="Password"
-    //             value={password}
-    //             onChange={(e) => setPassword(e.target.value)}
-    //         />
-    //         <button type="submit">Login</button>
-    //     </form>
-    // );
     return (
         <form onSubmit={handleLoginSubmit}>
             {showSuccessMessage && <p>Login successful!</p>}

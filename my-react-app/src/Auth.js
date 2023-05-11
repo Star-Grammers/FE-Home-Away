@@ -1,11 +1,14 @@
 import { createContext } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import LoginForm from './LoginForm';
 
 export const AuthContext = createContext();
 
 const Auth = ({ children }) => {
     const history = useHistory();
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleSignIn = async (email, password) => {
         try {
@@ -17,7 +20,8 @@ const Auth = ({ children }) => {
                     password: `${password}`
                 }
             })
-            sessionStorage.setItem('token', response.data.token)
+            sessionStorage.setItem('token', response.data.token);
+            setSuccessMessage('Sign-in successful!');
             history.push("/dashboard");
         } catch (e) {
             console.log(e)
@@ -30,11 +34,19 @@ const Auth = ({ children }) => {
         history.push("/signin")
     }
 
+    // return (
+    //     <AuthContext.Provider value={{ handleSignIn, handleLogout }}>
+    //         {children}
+    //     </AuthContext.Provider>
+    // )
     return (
         <AuthContext.Provider value={{ handleSignIn, handleLogout }}>
+            {successMessage && <div>{successMessage}</div>}
+            <LoginForm />
             {children}
         </AuthContext.Provider>
-    )
+    );
+
 
 }
 

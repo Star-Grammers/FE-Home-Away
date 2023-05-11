@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Signin from './Signin'
 import Dashboard from './Dashboard'
 import Auth from './Auth'
+import LoginForm from './LoginForm';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -21,6 +22,7 @@ const App = () => {
                     <Route exact path='/' component={Home} />
                     <Auth>
                         <Route exact path='/signin' component={Signin} />
+                        <Route exact path='/LoginForm' component={LoginForm} />
                         <ProtectedRoute exact path='/dashboard' component={Dashboard} />
                     </Auth>
                 </Switch>

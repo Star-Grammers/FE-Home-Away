@@ -1,12 +1,39 @@
-import './App.css';
-import Login from './Login';
+import "./App.css";
+import Home from "./Home";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Signin from "./Signin";
+import Dashboard from "./Dashboard";
+import Auth from "./Auth";
+import LoginForm from "./LoginForm";
 
-function App() {
+const ProtectedRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      sessionStorage.getItem("token") ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/signin" />
+      )
+    }
+  />
+);
+
+const App = () => {
   return (
     <div className="App">
-      <Login/>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Auth>
+            <Route exact path="/signin" component={Signin} />
+            <Route exact path="/LoginForm" component={LoginForm} />
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          </Auth>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

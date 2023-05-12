@@ -1,19 +1,16 @@
-import React from 'react'
-import WelcomePage from './WelcomePage'
+import React from "react";
+import WelcomePage from "./WelcomePage";
 
 const Home = () => {
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: "center" }}>
       <h1> Please log in or create an account.</h1>
       <br />
       <div>
-          <WelcomePage/>
+        <WelcomePage />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
-
-
-
+export default Home;

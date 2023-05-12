@@ -1,4 +1,4 @@
-//this is only getting data from the testData object copied and saved in server to not exceed api call limit for airbnb api site, only have 100
+// this is only getting data from the testData object copied and saved in server to not exceed api call limit for airbnb api site, only have 100
 export const fetchListings = async () => {
     try {
         const response = await fetch('http://localhost:3030/api/listings'); // Make a request to the backend API endpoint
@@ -10,10 +10,10 @@ export const fetchListings = async () => {
     }
 };
 
-//this is the fetch from rapidapi.com to get the data directly from airbnb third party api
+// this is the fetch from rapidapi.com to get the data directly from airbnb third party api
 // export const fetchListings = async () => {
 //     const url =
-//         "https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2023-09-16&checkout=2023-09-17&adults=1&children=0&infants=0&pets=0&page=1&currency=USD";
+//         "https://airbnb13.p.rapidapi.com/search-location?location=New%20York&checkin=2023-09-16&checkout=2023-09-17&adults=1&children=0&infants=0&pets=0&page=1&currency=USD";
 //     const options = {
 //         method: "GET",
 //         headers: {

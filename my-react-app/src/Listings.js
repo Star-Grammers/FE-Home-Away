@@ -1,40 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { fetchListings } from "./api";
 import "./App.css";
+import SearchAppBar from "./Search";
 
 const Listings = () => {
-    const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState([]);
+  const [filteredListings, setFilteredListings] = useState([]);
+  console.log(listings, "listings");
 
+  useEffect(() => {
+    const loadListings = async () => {
+      const data = await fetchListings();
+      setListings(data);
+      setFilteredListings(data);
+    };
+    loadListings();
+  }, []);
 
-    useEffect(() => {
-        const loadListings = async () => {
-            const data = await fetchListings();
-            setListings(data);
-          console.log(data, 'data')
-        };
+  const handleSearch = (query) => {
+    filterListings(query);
+  };
 
-        loadListings();
-    }, []);
+  const filterListings = (query) => {
+    const filtered = listings.filter((listing) => {
+      if (listing.city) {
+        return listing.city.toLowerCase().includes(query.toLowerCase());
+      } else {
+        return null;
+      }
+    });
+    setFilteredListings(filtered);
+  };
 
-    return (
-        <div className="listings-grid">
-            {listings.map((listing, i) => {
-                // console.log(listing);
-                const firstImage = listing.images[0];
+  return (
+    <>
+      <SearchAppBar onSearch={handleSearch} />
+      <div className="listings-grid">
+        {filteredListings.map((listing, i) => {
+          const firstImage = listing.images[0];
 
-                return (
-                    <div key={i} className="listing-card">
-                        <h2>{listing.name}</h2>
-                        <div className="image-container">
-                            <img src={firstImage} alt={listing.title} />
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
-    );
+          return (
+            <div key={i} className="listing-card">
+              <h2>{listing.name}</h2>
+              <div className="image-container">
+                <img src={firstImage} alt={listing.title} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
 };
 
 export default Listings;
-
-

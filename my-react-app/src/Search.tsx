@@ -13,6 +13,7 @@ import {
 } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { Link } from "react-router-dom";
 import { AuthContext, AuthContextProps } from "./Auth";
 
@@ -134,8 +135,13 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
           Reservations
         </MenuItem>
         <Divider />
-        <MenuItem component="button" onClick={handleLogout}>
-          Logout
+        <MenuItem
+          component="button"
+          onClick={handleLogout}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <PowerSettingsNewIcon />
+          <span style={{ marginLeft: "5px" }}>Logout</span>
         </MenuItem>
       </Menu>
     </Box>

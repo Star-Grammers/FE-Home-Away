@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import React, { useState, ChangeEvent, KeyboardEvent, useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import {
   AppBar,
@@ -7,9 +7,14 @@ import {
   IconButton,
   Typography,
   InputBase,
+  MenuItem,
+  Menu,
+  Divider,
 } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
+import { AuthContext, AuthContextProps } from "./Auth";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,12 +58,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-type SearchAppBarProps = {
+interface SearchAppBarProps {
   onSearch: (query: string) => void;
-};
+}
 
 const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { handleLogout } = useContext(AuthContext) as AuthContextProps;
 
   const handleSearch = (): void => {
     onSearch(searchQuery);
@@ -74,6 +81,14 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
     }
   };
 
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -84,6 +99,7 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleMenuOpen}
           >
             <MenuIcon />
           </IconButton>
@@ -93,7 +109,7 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            This can be anything...
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -109,6 +125,19 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
           </Search>
         </Toolbar>
       </AppBar>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem component={Link} to="/reservations" onClick={handleMenuClose}>
+          Reservations
+        </MenuItem>
+        <Divider />
+        <MenuItem component="button" onClick={handleLogout}>
+          Logout
+        </MenuItem>
+      </Menu>
     </Box>
   );
 };

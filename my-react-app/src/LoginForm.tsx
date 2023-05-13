@@ -19,11 +19,14 @@ const LoginForm: React.FC = () => {
       sessionStorage.setItem("token", response.data.token);
       history.push("/dashboard");
     } catch (error) {
-      setErrorMessage(
-        "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
-      );
-      history.push("/signin?error=login");
-      console.error(error);
+      if (error) {
+        setErrorMessage(
+          "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
+        );
+      } else {
+        history.push("/login");
+        console.error(error);
+      }
     }
   };
 
@@ -35,8 +38,8 @@ const LoginForm: React.FC = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <form onSubmit={handleLoginSubmit}>
-        {errorMessage && <p>{errorMessage}</p>}
         <h1>Please enter your email and password to login :P</h1>
+        {errorMessage && <p>{errorMessage}</p>}
         <br />
         <label htmlFor="email">Email</label>
         <br />
@@ -60,7 +63,7 @@ const LoginForm: React.FC = () => {
         <button type="submit">Login</button>
       </form>
       <p>
-        Don't have an account? <Link to="/signin">Sign up now!</Link>
+        Don't have an account? <Link to="/signup">Sign up now!</Link>
       </p>
     </div>
   );

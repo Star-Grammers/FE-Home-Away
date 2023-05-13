@@ -3,12 +3,12 @@ import { fetchListings } from "./api";
 import "./App.css";
 import SearchAppBar from "./Search";
 
-type Listing = {
+interface Listing {
   city: string;
   images: string[];
   name: string;
   title: string;
-};
+}
 
 const Listings: React.FC = () => {
   const [listings, setListings] = useState<Listing[]>([]);

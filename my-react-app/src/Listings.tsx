@@ -3,10 +3,16 @@ import { fetchListings } from "./api";
 import "./App.css";
 import SearchAppBar from "./Search";
 
-const Listings = () => {
-  const [listings, setListings] = useState([]);
-  const [filteredListings, setFilteredListings] = useState([]);
-  console.log(listings, "listings");
+type Listing = {
+  city: string;
+  images: string[];
+  name: string;
+  title: string;
+};
+
+const Listings: React.FC = () => {
+  const [listings, setListings] = useState<Listing[]>([]);
+  const [filteredListings, setFilteredListings] = useState<Listing[]>([]);
 
   useEffect(() => {
     const loadListings = async () => {
@@ -17,11 +23,11 @@ const Listings = () => {
     loadListings();
   }, []);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query: string) => {
     filterListings(query);
   };
 
-  const filterListings = (query) => {
+  const filterListings = (query: string): void => {
     const filtered = listings.filter((listing) => {
       if (listing.city) {
         return listing.city.toLowerCase().includes(query.toLowerCase());
@@ -36,7 +42,7 @@ const Listings = () => {
     <>
       <SearchAppBar onSearch={handleSearch} />
       <div className="listings-grid">
-        {filteredListings.map((listing, i) => {
+        {filteredListings.map((listing: Listing, i: number) => {
           const firstImage = listing.images[0];
 
           return (

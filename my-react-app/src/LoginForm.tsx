@@ -3,13 +3,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (email: string, password: string) => {
     try {
       const response = await axios.post("http://localhost:3030/user/login", {
         email,
@@ -19,19 +19,15 @@ const LoginForm = () => {
       sessionStorage.setItem("token", response.data.token);
       history.push("/dashboard");
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setErrorMessage(
-          "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
-        );
-        // history.push('/signin'); // Redirect to sign-in page after a failed login
-        history.push("/signin?error=login");
-      } else {
-        console.log(error);
-      }
+      setErrorMessage(
+        "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
+      );
+      history.push("/signin?error=login");
+      console.error(error);
     }
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleLogin(email, password);
   };

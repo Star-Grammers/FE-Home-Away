@@ -1,9 +1,9 @@
-import React, { useContext /*useState*/ } from "react";
-import { AuthContext } from "./Auth";
+import React, { useContext } from "react";
+import { AuthContext, AuthContextProps } from "./Auth";
 import Listings from "./Listings";
 
-const Dashboard = () => {
-  const { handleLogout } = useContext(AuthContext);
+const Dashboard: React.FC = () => {
+  const { handleLogout } = useContext(AuthContext) as AuthContextProps;
 
   return (
     <div style={{ textAlign: "center" }}>

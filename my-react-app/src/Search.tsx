@@ -1,12 +1,13 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+} from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -52,15 +53,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchAppBar = ({ onSearch }) => {
+type SearchAppBarProps = {
+  onSearch: (query: string) => void;
+};
+
+const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = (): void => {
     onSearch(searchQuery);
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -88,20 +99,12 @@ const SearchAppBar = ({ onSearch }) => {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            {/* <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        /> */}
             <StyledInputBase
               placeholder="Search by location..."
               inputProps={{ "aria-label": "search" }}
               value={searchQuery}
               onChange={handleInputChange}
-              onKeyPress={(event) => {
-                if (event.key === "Enter") {
-                  handleSearch();
-                }
-              }}
+              onKeyPress={handleKeyPress}
             />
           </Search>
         </Toolbar>

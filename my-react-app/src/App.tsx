@@ -7,6 +7,7 @@ import Dashboard from "./Dashboard";
 import Auth from "./Auth";
 import LoginForm from "./LoginForm";
 import SearchAppBar from "./Search";
+import SingleListing from "./SingleListing";
 
 const ProtectedRoute: React.FC<any> = ({
   component: Component,
@@ -23,7 +24,7 @@ const ProtectedRoute: React.FC<any> = ({
         isLoggedIn && path === props.match.url ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/signin" />
+          <Redirect to="/dashboard" />
         )
       }
     />
@@ -40,7 +41,12 @@ const App: React.FC = () => {
             <Route exact path="/signup" component={Signin} />
             <Route exact path="/LoginForm" component={LoginForm} />
             <ProtectedRoute path="/dashboard" component={Dashboard} />
-            <Route exact path="/" component={SearchAppBar} />
+            <Route exact path="/search" component={SearchAppBar} />
+            <Route
+              exact
+              path="/singleListing/:name"
+              component={SingleListing}
+            />
           </Auth>
         </Switch>
       </BrowserRouter>

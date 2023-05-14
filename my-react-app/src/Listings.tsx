@@ -4,9 +4,9 @@ import "./App.css";
 import SearchAppBar from "./Search";
 import { Pagination } from "@mui/material/";
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 
 interface Listing {
+  id: number;
   city: string;
   images: string[];
   name: string;
@@ -15,27 +15,24 @@ interface Listing {
 
 const Listings: React.FC = () => {
   const [listings, setListings] = useState<Listing[]>([]);
-  // const [listing, setListing] = useState<Listing[]>([]);
   const [filteredListings, setFilteredListings] = useState<Listing[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const listingsPerPage = 8;
+
+  const loadListings = async () => {
+    const data = await fetchListings();
+    setListings(data);
+    setFilteredListings(data);
+  };
 
   useEffect(() => {
-    const loadListings = async () => {
-      const data = await fetchListings();
-      setListings(data);
-      setFilteredListings(data);
-    };
     loadListings();
+    return function here() {
+      console.log("this happened");
+    };
   }, []);
 
   const handleSearch = (query: string) => {
     filterListings(query);
-  };
-
-  const handleClick = (listing: Listing) => {
-    console.log("Clicked listing:", listing);
-    // setListing(listing)
   };
 
   const filterListings = (query: string): void => {
@@ -49,8 +46,8 @@ const Listings: React.FC = () => {
     setFilteredListings(filtered);
   };
 
-  const indexOfLastListing = currentPage * listingsPerPage;
-  const indexOfFirstListing = indexOfLastListing - listingsPerPage;
+  const indexOfLastListing = currentPage * 8;
+  const indexOfFirstListing = indexOfLastListing - 8;
   const currentListings = filteredListings.slice(
     indexOfFirstListing,
     indexOfLastListing
@@ -74,10 +71,11 @@ const Listings: React.FC = () => {
             <div key={i} className="listing-card">
               <h2>{listing.name}</h2>
               <div className="image-container">
-                {/* <img src={firstImage} alt={listing.title} /> */}
                 <Link
-                  to={`/listings/${listing.name}`}
-                  onClick={() => handleClick(listing)}
+                  to={{
+                    pathname: `/singleListing/${listing.name}`,
+                    state: { listing },
+                  }}
                 >
                   <img src={firstImage} alt={listing.title} />
                 </Link>
@@ -88,7 +86,7 @@ const Listings: React.FC = () => {
       </div>
       <div className="pagination-container">
         <Pagination
-          count={Math.ceil(filteredListings.length / listingsPerPage)}
+          count={Math.ceil(filteredListings.length / 8)}
           page={currentPage}
           onChange={handlePaginationChange}
           color="secondary"

@@ -23,7 +23,6 @@ const LoginForm: React.FC = () => {
         setErrorMessage(
           "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
         );
-      } else {
         history.push("/login");
         console.error(error);
       }
@@ -47,7 +46,10 @@ const LoginForm: React.FC = () => {
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            e.preventDefault();
+            setEmail(e.target.value);
+          }}
         />
         <br />
         <label htmlFor="password">Password</label>
@@ -56,7 +58,10 @@ const LoginForm: React.FC = () => {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            e.preventDefault();
+            setPassword(e.target.value);
+          }}
         />
         <br />
         <br />

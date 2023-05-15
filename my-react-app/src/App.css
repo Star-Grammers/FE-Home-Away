@@ -65,3 +65,19 @@
   justify-content: center;
   margin-top: 20px;
 }
+.listing-details {
+  text-align: center;
+}
+
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.gallery-image {
+  max-width: 500px;
+  max-height: 500px;
+  object-fit: contain;
+}

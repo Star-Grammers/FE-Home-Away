@@ -21,7 +21,7 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
     password: string
   ): Promise<void> => {
     try {
-      const response = await axios.post("http://localhost:3030/user/signin", {
+      const response = await axios.post("http://localhost:3030/user/signup", {
         email: email,
         password: password,
       });

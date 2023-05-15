@@ -4,7 +4,6 @@ import {
   AppBar,
   Box,
   Toolbar,
-  IconButton,
   Typography,
   InputBase,
   MenuItem,
@@ -46,7 +45,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -94,23 +92,19 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-            onClick={handleMenuOpen}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              textAlign: "left",
+            }}
+            onClick={handleMenuOpen}
+            style={{ textDecoration: "underline", cursor: "pointer" }}
           >
-            This can be anything...
+            Dashboard
           </Typography>
           <Search>
             <SearchIconWrapper>

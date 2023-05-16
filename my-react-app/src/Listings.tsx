@@ -26,9 +26,6 @@ const Listings: React.FC = () => {
 
   useEffect(() => {
     loadListings();
-    return function here() {
-      console.log("this happened");
-    };
   }, []);
 
   const handleSearch = (query: string) => {

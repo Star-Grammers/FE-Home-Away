@@ -28,7 +28,7 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
       sessionStorage.setItem("token", response.data.token);
       history.push("/dashboard");
     } catch (e) {
-      console.log(e);
+      console.log(e, "this is the error");
     }
   };
 

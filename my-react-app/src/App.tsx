@@ -8,6 +8,7 @@ import Auth from "./Auth";
 import LoginForm from "./LoginForm";
 import SearchAppBar from "./Search";
 import SingleListing from "./SingleListing";
+import ConfirmBooking from "./ConfirmBooking";
 
 const ProtectedRoute: React.FC<any> = ({
   component: Component,
@@ -46,6 +47,11 @@ const App: React.FC = () => {
               exact
               path="/singleListing/:name"
               component={SingleListing}
+            />
+            <Route
+              exact
+              path="/confirm-booking/:name"
+              component={ConfirmBooking}
             />
           </Auth>
         </Switch>

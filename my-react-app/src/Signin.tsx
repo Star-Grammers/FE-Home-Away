@@ -1,14 +1,12 @@
 import React, { useState, useContext } from "react";
 import { AuthContext, AuthContextProps } from "./Auth";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Signin: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { handleSignIn } = useContext(AuthContext) as AuthContextProps;
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const error = queryParams.get("error");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -18,21 +16,20 @@ const Signin: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    handleSignIn(email, password);
+
+    try {
+      await handleSignIn(email, password);
+    } catch (error) {
+      setErrorMessage("User already exists");
+    }
   };
 
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Create Account</h1>
-      {error && (
-        <p>
-          {error === "login"
-            ? "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
-            : ""}
-        </p>
-      )}
+      {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <br />

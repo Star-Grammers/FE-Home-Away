@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-// import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Bar from "./Bar";
-// import { AuthContext, AuthContextProps } from "./Auth";
+import BackButton from "./BackButton";
+import ForwardButton from "./ForwardButton";
+import { Link } from "react-router-dom";
 
 interface Listing {
   id: number;
@@ -36,7 +37,6 @@ type ListingWithDetails = Listing & PropertyDetails;
 const SingleListing: React.FC = () => {
   const location = useLocation<{ listing: ListingWithDetails }>();
   const listing = location.state?.listing;
-  // const handleSearch = useContext(AuthContext) as AuthContextProps;
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -79,7 +79,6 @@ const SingleListing: React.FC = () => {
         <p>Superhost: {listing.isSuperhost ? "Yes" : "No"}</p>
         <p>Reviews: {listing.reviewsCount}</p>
         <p>Rarefind: {listing.rareFind ? "Yes" : "No"}</p>
-        {/* <p>{listing.previewAmenities}</p> */}
         <p>
           {listing.previewAmenities.map((amenity, index) => (
             <span key={index}>
@@ -89,6 +88,15 @@ const SingleListing: React.FC = () => {
           ))}
         </p>
       </div>
+      <BackButton to="/dashboard" />
+      <Link
+        to={{
+          pathname: `/confirm-booking/${listing.name}`,
+          state: { listing },
+        }}
+      >
+        <ForwardButton to="/confirm-booking/:name" />
+      </Link>
     </>
   );
 };

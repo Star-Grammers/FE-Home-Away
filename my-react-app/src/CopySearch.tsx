@@ -11,6 +11,8 @@ import {
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { Link } from "react-router-dom";
 import { AuthContext, AuthContextProps } from "./Auth";
+import HomeIcon from "@mui/icons-material/Home";
+import PageviewIcon from "@mui/icons-material/Pageview";
 
 const CopySearchAppBar: React.FC<any> = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -49,8 +51,14 @@ const CopySearchAppBar: React.FC<any> = () => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
+        <MenuItem component={Link} to="/dashboard" onClick={handleMenuClose}>
+          <HomeIcon />
+          <span style={{ marginLeft: "5px" }}>Home</span>
+        </MenuItem>
+        <Divider />
         <MenuItem component={Link} to="/reservations" onClick={handleMenuClose}>
-          Reservations
+          <PageviewIcon />
+          <span style={{ marginLeft: "5px" }}>Reservations</span>
         </MenuItem>
         <Divider />
         <MenuItem

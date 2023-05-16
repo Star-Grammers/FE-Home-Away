@@ -5,7 +5,7 @@ const WelcomePage: React.FC = () => {
   return (
     <div>
       <div style={{ textAlign: "center" }}>
-        <Link to="/Signin" style={{ display: "block", marginBottom: "10px" }}>
+        <Link to="/Signup" style={{ display: "block", marginBottom: "10px" }}>
           Create
         </Link>
         <span style={{ display: "block", marginBottom: "10px" }}>OR</span>

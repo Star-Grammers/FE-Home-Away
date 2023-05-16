@@ -10,11 +10,12 @@ import {
   Menu,
   Divider,
 } from "@mui/material/";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { Link } from "react-router-dom";
 import { AuthContext, AuthContextProps } from "./Auth";
+import HomeIcon from "@mui/icons-material/Home";
+import PageviewIcon from "@mui/icons-material/Pageview";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -125,8 +126,14 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
+        <MenuItem component={Link} to="/dashboard" onClick={handleMenuClose}>
+          <HomeIcon />
+          <span style={{ marginLeft: "5px" }}>Home</span>
+        </MenuItem>
+        <Divider />
         <MenuItem component={Link} to="/reservations" onClick={handleMenuClose}>
-          Reservations
+          <PageviewIcon />
+          <span style={{ marginLeft: "5px" }}>Reservations</span>
         </MenuItem>
         <Divider />
         <MenuItem

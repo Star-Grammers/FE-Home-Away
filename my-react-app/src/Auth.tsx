@@ -26,6 +26,7 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
         password: password,
       });
       sessionStorage.setItem("token", response.data.token);
+      console.log(response.data.token, "TOKEN1234");
       history.push("/dashboard");
     } catch (e) {
       console.log(e, "this is the error");
@@ -33,7 +34,7 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
   };
 
   const handleLogout = (): void => {
-    sessionStorage.clear();
+    // sessionStorage.clear();
     history.push("/signup");
   };
 

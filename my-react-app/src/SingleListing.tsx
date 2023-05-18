@@ -7,15 +7,15 @@ import BackButton from "./BackButton";
 import ForwardButton from "./ForwardButton";
 import { Link } from "react-router-dom";
 
-interface Listing {
+type Listing = {
   id: number;
   city: string;
   images: string[];
   name: string;
   title: string;
-}
+};
 
-interface PropertyDetails {
+type PropertyDetails = {
   beds: number;
   bedrooms: number;
   bathrooms: number;
@@ -30,14 +30,13 @@ interface PropertyDetails {
   reviewsCount: number;
   rareFind: Boolean;
   previewAmenities: [string];
-}
+};
 
 type ListingWithDetails = Listing & PropertyDetails;
 
 const SingleListing: React.FC = () => {
   const location = useLocation<{ listing: ListingWithDetails }>();
   const listing = location.state?.listing;
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const previousImage = () => {
@@ -52,7 +51,8 @@ const SingleListing: React.FC = () => {
     );
   };
 
-  if (!listing) {
+  if (!listing || null || undefined) {
+    console.log(listing, "this is the listing");
     return <div>Loading...</div>;
   }
 

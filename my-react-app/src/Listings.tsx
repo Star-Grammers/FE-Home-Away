@@ -70,7 +70,9 @@ const Listings: React.FC = () => {
               <div className="image-container">
                 <Link
                   to={{
-                    pathname: `/singleListing/${listing.name}`,
+                    pathname: `/singleListing/${encodeURIComponent(
+                      listing.name
+                    )}`,
                     state: { listing },
                   }}
                 >

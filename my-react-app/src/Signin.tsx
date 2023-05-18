@@ -6,7 +6,7 @@ const Signin: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { handleSignIn } = useContext(AuthContext) as AuthContextProps;
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -20,16 +20,18 @@ const Signin: React.FC = () => {
     e.preventDefault();
 
     try {
-      await handleSignIn(email, password);
+      handleSignIn(email, password);
+      setErrorMessage(true);
     } catch (error) {
-      setErrorMessage("User already exists");
+      if (error) {
+      }
     }
   };
 
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Create Account</h1>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p>User already exists</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <br />

@@ -1,29 +1,29 @@
-import React from "react";
-import "./App.css";
-import Home from "./Home";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import Signin from "./Signin";
-import Dashboard from "./Dashboard";
-import Auth from "./Auth";
-import LoginForm from "./LoginForm";
-import SearchAppBar from "./Search";
-import SingleListing from "./SingleListing";
-import ConfirmBooking from "./ConfirmBooking";
+import React from 'react';
+import './App.css';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import Home from './Home.tsx';
+import Signin from './Signin.tsx';
+import Dashboard from './Dashboard.tsx';
+import Auth from './Auth.tsx';
+import LoginForm from './LoginForm.tsx';
+import SearchAppBar from './Search.tsx';
+import SingleListing from './SingleListing.tsx';
+import ConfirmBooking from './ConfirmBooking.tsx';
 
-const ProtectedRoute: React.FC<any> = ({
-  component: Component,
-  path,
-  ...rest
-}) => {
-  const isLoggedIn = !!sessionStorage.getItem("token");
+const ProtectedRoute: React.FC<any> = (props) => {
+  const { component: Component, path } = props;
+  const isLoggedIn = !!sessionStorage.getItem('token');
 
   return (
     <Route
       path={path}
-      {...rest}
-      render={(props: any) =>
-        isLoggedIn && path === props.match.url ? (
-          <Component {...props} />
+      render={(routeProps) =>
+        isLoggedIn && path === routeProps.match.url ? (
+          <Component
+            history={routeProps.history}
+            location={routeProps.location}
+            match={routeProps.match}
+          />
         ) : (
           <Redirect to="/dashboard" />
         )

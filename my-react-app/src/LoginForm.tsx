@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = async (email: string, password: string) => {
+  const handleLogin = async (loginEmail: string, loginPassword: string) => {
     try {
-      const response = await axios.post("http://localhost:3030/user/login", {
-        email,
-        password,
+      const response = await axios.post('http://localhost:3030/user/login', {
+        email: loginEmail,
+        password: loginPassword,
       });
 
-      sessionStorage.setItem("token", response.data.token);
-      history.push("/dashboard");
+      sessionStorage.setItem('token', response.data.token);
+      history.push('/dashboard');
     } catch (error) {
       if (error) {
         setErrorMessage(
@@ -33,7 +32,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: 'center' }}>
       <form onSubmit={handleLoginSubmit}>
         <h1>Please enter your email and password to login :P</h1>
         {errorMessage && <p>{errorMessage}</p>}
@@ -66,7 +65,7 @@ const LoginForm: React.FC = () => {
         <button type="submit">Login</button>
       </form>
       <p>
-        Don't have an account? <Link to="/signup">Sign up now!</Link>
+        Don&apos;t have an account? <Link to="/signup">Sign up now!</Link>
       </p>
     </div>
   );

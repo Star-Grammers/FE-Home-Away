@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 import {
   AppBar,
   Box,
@@ -7,12 +7,12 @@ import {
   MenuItem,
   Menu,
   Divider,
-} from "@mui/material/";
-import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-import { Link } from "react-router-dom";
-import { AuthContext, AuthContextProps } from "./Auth";
-import HomeIcon from "@mui/icons-material/Home";
-import PageviewIcon from "@mui/icons-material/Pageview";
+} from '@mui/material/';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import PageviewIcon from '@mui/icons-material/Pageview';
+import { AuthContext, AuthContextProps } from './Auth.tsx';
 
 const CopySearchAppBar: React.FC<any> = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -36,11 +36,11 @@ const CopySearchAppBar: React.FC<any> = () => {
             component="div"
             sx={{
               flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              textAlign: "left",
+              display: { xs: 'none', sm: 'block' },
+              textAlign: 'left',
             }}
             onClick={handleMenuOpen}
-            style={{ textDecoration: "underline", cursor: "pointer" }}
+            style={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             Dashboard
           </Typography>
@@ -53,21 +53,21 @@ const CopySearchAppBar: React.FC<any> = () => {
       >
         <MenuItem component={Link} to="/dashboard" onClick={handleMenuClose}>
           <HomeIcon />
-          <span style={{ marginLeft: "5px" }}>Home</span>
+          <span style={{ marginLeft: '5px' }}>Home</span>
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/reservations" onClick={handleMenuClose}>
           <PageviewIcon />
-          <span style={{ marginLeft: "5px" }}>Reservations</span>
+          <span style={{ marginLeft: '5px' }}>Reservations</span>
         </MenuItem>
         <Divider />
         <MenuItem
           component="button"
           onClick={handleLogout}
-          style={{ display: "flex", alignItems: "center" }}
+          style={{ display: 'flex', alignItems: 'center' }}
         >
           <PowerSettingsNewIcon />
-          <span style={{ marginLeft: "5px" }}>Logout</span>
+          <span style={{ marginLeft: '5px' }}>Logout</span>
         </MenuItem>
       </Menu>
     </Box>

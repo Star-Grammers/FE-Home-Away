@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
-import { AuthContext, AuthContextProps } from "./Auth";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext, AuthContextProps } from './Auth.tsx';
 
 const Signin: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { handleSignIn } = useContext(AuthContext) as AuthContextProps;
   const [errorMessage, setErrorMessage] = useState(false);
 
@@ -24,12 +24,13 @@ const Signin: React.FC = () => {
       setErrorMessage(true);
     } catch (error) {
       if (error) {
+        console.error(error);
       }
     }
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: 'center' }}>
       <h1>Create Account</h1>
       {errorMessage && <p>User already exists</p>}
       <form onSubmit={handleSubmit}>
@@ -57,7 +58,7 @@ const Signin: React.FC = () => {
         <button type="submit">Create</button>
       </form>
       <p>
-        Already have an account?{" "}
+        Already have an account?{' '}
         <Link to="/LoginForm">Click here to login!</Link>
       </p>
     </div>

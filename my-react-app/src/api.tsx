@@ -1,14 +1,14 @@
-// this is only getting data from the testData object copied and saved in server to not exceed api call limit for airbnb api site, only have 100
-export const fetchListings = async () => {
+const fetchListings = async () => {
   try {
-    const response = await fetch("http://localhost:3030/api/listings"); // Make a request to the backend API endpoint
-    const data = await response.json(); // Parse the response data
+    const response = await fetch('http://localhost:3030/api/listings');
+    const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);
     return [];
   }
 };
+export default fetchListings;
 
 // this is the fetch from rapidapi.com to get the data directly from airbnb third party api
 // export const fetchListings = async () => {

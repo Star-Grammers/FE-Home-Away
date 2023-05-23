@@ -1,6 +1,6 @@
-import React from "react";
-import { Box } from "@mui/material";
-import CopySearchAppBar from "./CopySearch";
+import React from 'react';
+import { Box } from '@mui/material';
+import CopySearchAppBar from './CopySearch.tsx';
 
 const Bar: React.FC = () => {
   return (

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { fetchListings } from "./api";
-import "./App.css";
-import SearchAppBar from "./Search";
-import { Pagination } from "@mui/material/";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Pagination } from '@mui/material/';
+import { Link } from 'react-router-dom';
+import fetchListings from './api.tsx';
+import './App.css';
+import SearchAppBar from './Search.tsx';
 
 interface Listing {
   id: number;
@@ -28,19 +28,18 @@ const Listings: React.FC = () => {
     loadListings();
   }, []);
 
-  const handleSearch = (query: string) => {
-    filterListings(query);
-  };
-
   const filterListings = (query: string): void => {
     const filtered = listings.filter((listing) => {
       if (listing.city) {
         return listing.city.toLowerCase().includes(query.toLowerCase());
-      } else {
-        return null;
       }
+      return null;
     });
     setFilteredListings(filtered);
+  };
+
+  const handleSearch = (query: string) => {
+    filterListings(query);
   };
 
   const indexOfLastListing = currentPage * 8;
@@ -51,7 +50,7 @@ const Listings: React.FC = () => {
   );
 
   const handlePaginationChange = (
-    event: React.ChangeEvent<unknown>,
+    event: React.ChangeEvent<any>,
     page: number
   ) => {
     setCurrentPage(page);
@@ -61,11 +60,11 @@ const Listings: React.FC = () => {
     <>
       <SearchAppBar onSearch={handleSearch} />
       <div className="listings-grid">
-        {currentListings.map((listing: Listing, i: number) => {
+        {currentListings.map((listing: Listing) => {
           const firstImage = listing.images[0];
 
           return (
-            <div key={i} className="listing-card">
+            <div key={listing.id} className="listing-card">
               <h2>{listing.name}</h2>
               <div className="image-container">
                 <Link

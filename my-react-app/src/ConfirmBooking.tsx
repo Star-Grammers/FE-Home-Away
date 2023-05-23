@@ -1,10 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
-import { useLocation } from "react-router-dom";
-import Bar from "./Bar";
-import BackButton from "./BackButton";
-import ForwardButton from "./ForwardButton";
-import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { ChangeEvent, useState } from 'react';
+import axios from 'axios';
+import { useLocation, Link, useHistory } from 'react-router-dom';
+import Bar from './Bar.tsx';
+import BackButton from './BackButton.tsx';
+import ForwardButton from './ForwardButton.tsx';
 
 type Listing = {
   id: number;
@@ -19,10 +18,10 @@ interface ConfirmBookingProps {
 }
 
 const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
-  const [guestCount, setGuestCount] = useState("");
-  const [petsCount, setPetsCount] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [checkInDate, setCheckInDate] = useState("");
+  const [guestCount, setGuestCount] = useState('');
+  const [petsCount, setPetsCount] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [checkInDate, setCheckInDate] = useState('');
 
   const history = useHistory();
   const location = useLocation<{ listing: Listing }>();
@@ -61,12 +60,12 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
         checkInDate,
       };
 
-      axios.post("http://localhost:3030/api/reservations", reservationData);
+      axios.post('http://localhost:3030/api/reservations', reservationData);
 
-      console.log("Reservation saved successfully");
-      history.push("/reservations");
+      console.log('Reservation saved successfully');
+      history.push('/reservations');
     } catch (error) {
-      console.error("Failed to save reservation:", error);
+      console.error('Failed to save reservation:', error);
     }
   };
 
@@ -118,7 +117,9 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
           value={checkInDate}
           onChange={handleCheckInDateChange}
         />
-        <button onClick={saveReservation}>Save Reservation</button>
+        <button type="button" onClick={saveReservation}>
+          Save Reservation
+        </button>
       </div>
     </>
   );

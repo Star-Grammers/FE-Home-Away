@@ -1,6 +1,6 @@
-import React, { createContext, ReactNode } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { createContext, ReactNode } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 export interface AuthContextProps {
   handleSignIn: (email: string, password: string) => void;
@@ -21,21 +21,21 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
     password: string
   ): Promise<void> => {
     try {
-      const response = await axios.post("http://localhost:3030/user/signup", {
-        email: email,
-        password: password,
+      const response = await axios.post('http://localhost:3030/user/signup', {
+        email,
+        password,
       });
-      sessionStorage.setItem("token", response.data.token);
-      console.log(response.data.token, "TOKEN1234");
-      history.push("/dashboard");
+      sessionStorage.setItem('token', response.data.token);
+      console.log(response.data.token, 'TOKEN1234');
+      history.push('/dashboard');
     } catch (e) {
-      console.log(e, "this is the error");
+      console.log(e, 'this is the error');
     }
   };
 
   const handleLogout = (): void => {
     // sessionStorage.clear();
-    history.push("/signup");
+    history.push('/signup');
   };
 
   return (

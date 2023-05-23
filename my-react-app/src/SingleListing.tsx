@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Bar from "./Bar";
-import BackButton from "./BackButton";
-import ForwardButton from "./ForwardButton";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { v4 as uuidv4 } from 'uuid';
+import BackButton from './BackButton.tsx';
+import Bar from './Bar.tsx';
+import ForwardButton from './ForwardButton.tsx';
 
 type Listing = {
   id: number;
@@ -28,7 +28,7 @@ type PropertyDetails = {
   cancelPolicy: string;
   isSuperhost: boolean;
   reviewsCount: number;
-  rareFind: Boolean;
+  rareFind: boolean;
   previewAmenities: [string];
 };
 
@@ -52,7 +52,7 @@ const SingleListing: React.FC = () => {
   };
 
   if (!listing || null || undefined) {
-    console.log(listing, "this is the listing");
+    console.log(listing, 'this is the listing');
     return <div>Loading...</div>;
   }
 
@@ -76,15 +76,12 @@ const SingleListing: React.FC = () => {
         <p>Persons: {listing.persons}</p>
         <p>Price: ${listing.price.rate}</p>
         <p>Cancel Policy: ${listing.cancelPolicy}</p>
-        <p>Superhost: {listing.isSuperhost ? "Yes" : "No"}</p>
+        <p>Superhost: {listing.isSuperhost ? 'Yes' : 'No'}</p>
         <p>Reviews: {listing.reviewsCount}</p>
-        <p>Rarefind: {listing.rareFind ? "Yes" : "No"}</p>
+        <p>Rarefind: {listing.rareFind ? 'Yes' : 'No'}</p>
         <p>
-          {listing.previewAmenities.map((amenity, index) => (
-            <span key={index}>
-              {amenity}
-              {index !== listing.previewAmenities.length - 1 && ", "}
-            </span>
+          {listing.previewAmenities.map((amenity) => (
+            <span key={uuidv4()}>{amenity}</span>
           ))}
         </p>
       </div>

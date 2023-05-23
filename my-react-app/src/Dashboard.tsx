@@ -1,9 +1,9 @@
-import React from "react";
-import Listings from "./Listings";
+import React from 'react';
+import Listings from './Listings.tsx';
 
 const Dashboard: React.FC = () => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: 'center' }}>
       <Listings />
     </div>
   );

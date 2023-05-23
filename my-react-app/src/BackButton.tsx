@@ -1,8 +1,8 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import Button from "@mui/material/Button";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Box from "@mui/material/Box";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Box from '@mui/material/Box';
 
 type BackButtonProps = {
   to: string;
@@ -17,7 +17,7 @@ const BackButton: React.FC<BackButtonProps> = ({ to }) => {
 
   return (
     <>
-      <Box sx={{ position: "absolute", top: 50, left: 0, p: 2 }}>
+      <Box sx={{ position: 'absolute', top: 50, left: 0, p: 2 }}>
         <Button
           variant="outlined"
           startIcon={<ArrowBackIcon />}

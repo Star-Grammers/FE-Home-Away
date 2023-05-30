@@ -58,7 +58,8 @@ const Signin: React.FC = () => {
         <button type="submit">Create</button>
       </form>
       <p>
-        Already have an account?{' '}
+        Already have an account?
+        {' '}
         <Link to="/LoginForm">Click here to login!</Link>
       </p>
     </div>

@@ -11,22 +11,26 @@ type BackButtonProps = {
 const BackButton: React.FC<BackButtonProps> = ({ to }) => {
   const history = useHistory();
 
-  const handleBack = () => {
-    history.push(to);
-  };
+  const handleBack = () => history.push(to);
 
   return (
-    <>
-      <Box sx={{ position: 'absolute', top: 50, left: 0, p: 2 }}>
-        <Button
-          variant="outlined"
-          startIcon={<ArrowBackIcon />}
-          onClick={handleBack}
-        >
-          Back
-        </Button>
-      </Box>
-    </>
+
+    <Box
+      sx={{
+        position: 'absolute',
+        top: 50,
+        left: 0,
+        p: 2
+      }}
+    >
+      <Button
+        variant="outlined"
+        startIcon={<ArrowBackIcon />}
+        onClick={handleBack}
+      >
+        Back
+      </Button>
+    </Box>
   );
 };
 

@@ -12,13 +12,14 @@ const LoginForm: React.FC = () => {
     try {
       const response = await axios.post('http://localhost:3030/user/login', {
         email: loginEmail,
-        password: loginPassword,
+        password: loginPassword
       });
 
       sessionStorage.setItem('token', response.data.token);
       history.push('/dashboard');
     } catch (error) {
       if (error) {
+        console.log(error, 'this is the error 2023');
         setErrorMessage(
           "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
         );
@@ -65,7 +66,9 @@ const LoginForm: React.FC = () => {
         <button type="submit">Login</button>
       </form>
       <p>
-        Don&apos;t have an account? <Link to="/signup">Sign up now!</Link>
+        Don&apos;t have an account?
+        {' '}
+        <Link to="/signup">Sign up now!</Link>
       </p>
     </div>
   );

@@ -72,7 +72,7 @@ const Listings: React.FC = () => {
                     pathname: `/singleListing/${encodeURIComponent(
                       listing.name
                     )}`,
-                    state: { listing },
+                    state: { listing }
                   }}
                 >
                   <img src={firstImage} alt={listing.title} />

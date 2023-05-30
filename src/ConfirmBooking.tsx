@@ -14,10 +14,12 @@ type Listing = {
 };
 
 interface ConfirmBookingProps {
+  // eslint-disable-next-line no-unused-vars
   onChange: (query: string) => void;
 }
 
-const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
+// const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
+const ConfirmBooking: React.FC<ConfirmBookingProps> = () => {
   const [guestCount, setGuestCount] = useState('');
   const [petsCount, setPetsCount] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -31,25 +33,17 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
     return <div>Loading...</div>;
   }
 
-  const handleGuestsChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setGuestCount(event.target.value);
-  };
+  const handleGuestsChange = (event: ChangeEvent<HTMLInputElement>): void => setGuestCount(event.target.value);
 
-  const handlePetsChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setPetsCount(event.target.value);
-  };
+  const handlePetsChange = (event: ChangeEvent<HTMLInputElement>): void => setPetsCount(event.target.value);
 
   const handlePhoneNumberChange = (
     event: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setPhoneNumber(event.target.value);
-  };
+  ): void => setPhoneNumber(event.target.value);
 
   const handleCheckInDateChange = (
     event: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setCheckInDate(event.target.value);
-  };
+  ): void => setCheckInDate(event.target.value);
 
   const saveReservation = async () => {
     try {
@@ -57,10 +51,10 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
         guestCount,
         petsCount,
         phoneNumber,
-        checkInDate,
+        checkInDate
       };
 
-      axios.post('http://localhost:3030/api/reservations', reservationData);
+      await axios.post('http://localhost:3030/api/reservations', reservationData);
 
       console.log('Reservation saved successfully');
       history.push('/reservations');
@@ -84,7 +78,7 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = ({ onChange }) => {
       <Link
         to={{
           pathname: `/singleListing/${listing.name}`,
-          state: { listing },
+          state: { listing }
         }}
       >
         <BackButton to="/singleListing/:name" />

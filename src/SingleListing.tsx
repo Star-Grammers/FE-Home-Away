@@ -40,19 +40,14 @@ const SingleListing: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const previousImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? listing?.images.length - 1 : prevIndex - 1
-    );
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? listing?.images.length - 1 : prevIndex - 1));
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === listing?.images.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentImageIndex((prevIndex) => (prevIndex === listing?.images.length - 1 ? 0 : prevIndex + 1));
   };
 
   if (!listing || null || undefined) {
-    console.log(listing, 'this is the listing');
     return <div>Loading...</div>;
   }
 
@@ -70,15 +65,42 @@ const SingleListing: React.FC = () => {
           />
           <ArrowForwardIosIcon className="arrow-icon" onClick={nextImage} />
         </div>
-        <p>Beds: {listing.beds}</p>
-        <p>Bedrooms: {listing.bedrooms}</p>
-        <p>Bathrooms: {listing.bathrooms}</p>
-        <p>Persons: {listing.persons}</p>
-        <p>Price: ${listing.price.rate}</p>
-        <p>Cancel Policy: ${listing.cancelPolicy}</p>
-        <p>Superhost: {listing.isSuperhost ? 'Yes' : 'No'}</p>
-        <p>Reviews: {listing.reviewsCount}</p>
-        <p>Rarefind: {listing.rareFind ? 'Yes' : 'No'}</p>
+        <p>
+          Beds:
+          {listing.beds}
+        </p>
+        <p>
+          Bedrooms:
+          {listing.bedrooms}
+        </p>
+        <p>
+          Bathrooms:
+          {listing.bathrooms}
+        </p>
+        <p>
+          Persons:
+          {listing.persons}
+        </p>
+        <p>
+          Price: $
+          {listing.price.rate}
+        </p>
+        <p>
+          Cancel Policy: $
+          {listing.cancelPolicy}
+        </p>
+        <p>
+          Superhost:
+          {listing.isSuperhost ? 'Yes' : 'No'}
+        </p>
+        <p>
+          Reviews:
+          {listing.reviewsCount}
+        </p>
+        <p>
+          Rarefind:
+          {listing.rareFind ? 'Yes' : 'No'}
+        </p>
         <p>
           {listing.previewAmenities.map((amenity) => (
             <span key={uuidv4()}>{amenity}</span>
@@ -89,7 +111,7 @@ const SingleListing: React.FC = () => {
       <Link
         to={{
           pathname: `/confirm-booking/${listing.name}`,
-          state: { listing },
+          state: { listing }
         }}
       >
         <ForwardButton to="/confirm-booking/:name" />

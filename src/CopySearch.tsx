@@ -6,7 +6,7 @@ import {
   Typography,
   MenuItem,
   Menu,
-  Divider,
+  Divider
 } from '@mui/material/';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { Link } from 'react-router-dom';
@@ -37,7 +37,7 @@ const CopySearchAppBar: React.FC<any> = () => {
             sx={{
               flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
-              textAlign: 'left',
+              textAlign: 'left'
             }}
             onClick={handleMenuOpen}
             style={{ textDecoration: 'underline', cursor: 'pointer' }}

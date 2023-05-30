@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 export interface AuthContextProps {
+  // eslint-disable-next-line no-unused-vars
   handleSignIn: (email: string, password: string) => void;
   handleLogout: () => void;
 }
@@ -23,13 +24,13 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
     try {
       const response = await axios.post('http://localhost:3030/user/signup', {
         email,
-        password,
+        password
       });
       sessionStorage.setItem('token', response.data.token);
       console.log(response.data.token, 'TOKEN1234');
       history.push('/dashboard');
     } catch (e) {
-      console.log(e, 'this is the error');
+      console.error(e);
     }
   };
 

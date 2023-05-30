@@ -1,10 +1,10 @@
 {
   "extends": [
-    "airbnb",
-    "plugin:prettier/recommended",
+    // "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
   "env": {
@@ -14,8 +14,21 @@
     "jest": true,
     "node": true
   },
+"parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
-    "no-console": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    // "no-console": "off",
     "jsx-a11y/href-no-hash": ["off"],
     "jsx-a11y/label-has-associated-control": [
       "error",
@@ -44,7 +57,7 @@
       {
         "code": 80,
         "tabWidth": 2,
-        "comments": 80,
+        "comments": 200,
         "ignoreComments": false,
         "ignoreTrailingComments": true,
         "ignoreUrls": true,

@@ -19,17 +19,17 @@ const ForwardButton: React.FC<ForwardButtonProps> = ({ to }) => {
     <Box
       sx={{
         position: 'absolute',
-        top: 50,
-        left: 1275,
+        top: 80,
+        left: 1750,
         p: 2
       }}
     >
       <Button
         variant="outlined"
-        startIcon={<ArrowForwardIcon />}
         onClick={handleForward}
       >
         Forward
+        <ArrowForwardIcon />
       </Button>
     </Box>
   );

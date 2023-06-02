@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
+import {
+  Box, Typography, Grid, Button
+} from '@mui/material/';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { v4 as uuidv4 } from 'uuid';
-import BackButton from './BackButton.tsx';
-import Bar from './Bar.tsx';
-import ForwardButton from './ForwardButton.tsx';
+import BackButton from '../components/buttons/BackButton.tsx';
+import ReusableAppBar from '../ReusableAppBar.tsx';
+import ForwardButton from '../components/buttons/ForwardButton.tsx';
 
 type Listing = {
   id: number;
@@ -53,60 +57,75 @@ const SingleListing: React.FC = () => {
 
   return (
     <>
-      <Bar />
-      <div className="listing-details">
-        <h2>{listing.name}</h2>
-        <div className="image-gallery">
-          <ArrowBackIosIcon className="arrow-icon" onClick={previousImage} />
-          <img
-            className="gallery-image"
-            src={listing.images[currentImageIndex]}
-            alt={listing.title}
-          />
-          <ArrowForwardIosIcon className="arrow-icon" onClick={nextImage} />
-        </div>
-        <p>
+      <ReusableAppBar />
+      <Box sx={{ marginTop: '1rem', textAlign: 'center', justifyContent: 'center' }}>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Box sx={{ justifyContent: 'center', marginTop: '1rem', textAlign: 'center' }}>
+              <Typography variant="h6">{listing.name}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+              <Tooltip title="Add" placement="left">
+                <Button onClick={previousImage}><ArrowBackIosIcon /></Button>
+              </Tooltip>
+              <img
+                width="500px"
+                height="350px"
+                src={listing.images[currentImageIndex]}
+                alt={listing.title}
+              />
+              <Tooltip title="Add" placement="right">
+                <Button onClick={nextImage}><ArrowForwardIosIcon /></Button>
+              </Tooltip>
+            </Box>
+          </Grid>
+        </Grid>
+        <Typography variant="h6" align="center">
           Beds:
           {listing.beds}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Bedrooms:
           {listing.bedrooms}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Bathrooms:
           {listing.bathrooms}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Persons:
           {listing.persons}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
+          Persons:
+          {listing.persons}
+        </Typography>
+        <Typography variant="h6" align="center">
           Price: $
           {listing.price.rate}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Cancel Policy: $
           {listing.cancelPolicy}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Superhost:
           {listing.isSuperhost ? 'Yes' : 'No'}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Reviews:
           {listing.reviewsCount}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           Rarefind:
           {listing.rareFind ? 'Yes' : 'No'}
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h6" align="center">
           {listing.previewAmenities.map((amenity) => (
             <span key={uuidv4()}>{amenity}</span>
           ))}
-        </p>
-      </div>
+        </Typography>
+      </Box>
       <BackButton to="/dashboard" />
       <Link
         to={{

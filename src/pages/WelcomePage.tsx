@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Box, Typography
+} from '@mui/material/';
 
 const WelcomePage: React.FC = () => (
-  <div>
-    <div style={{ textAlign: 'center' }}>
+  <Box>
+    <Box sx={{ textAlign: 'center' }}>
       <Link to="/Signup" style={{ display: 'block', marginBottom: '10px' }}>
         Create
       </Link>
-      <span style={{ display: 'block', marginBottom: '10px' }}>OR</span>
+      <Typography variant="h6">OR</Typography>
       <Link to="/LoginForm" style={{ display: 'block' }}>
         Log In
       </Link>
-    </div>
-  </div>
+    </Box>
+  </Box>
 );
 
 export default WelcomePage;

@@ -35,7 +35,6 @@ const Auth: React.FC<AuthProps> = ({ children }) => {
   };
 
   const handleLogout = (): void => {
-    // sessionStorage.clear();
     history.push('/signup');
   };
 

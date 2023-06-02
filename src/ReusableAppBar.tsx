@@ -3,18 +3,18 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Typography,
   MenuItem,
   Menu,
   Divider
 } from '@mui/material/';
+import IconButton from '@mui/material/IconButton';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import PageviewIcon from '@mui/icons-material/Pageview';
-import { AuthContext, AuthContextProps } from './Auth.tsx';
+import { AuthContext, AuthContextProps } from './store/Auth.tsx';
 
-const CopySearchAppBar: React.FC<any> = () => {
+const ReusableAppBar: React.FC<any> = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { handleLogout } = useContext(AuthContext) as AuthContextProps;
 
@@ -30,20 +30,16 @@ const CopySearchAppBar: React.FC<any> = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'none', sm: 'block' },
-              textAlign: 'left'
-            }}
+          <IconButton
+            size="small"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
             onClick={handleMenuOpen}
-            style={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             Dashboard
-          </Typography>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Menu
@@ -58,7 +54,7 @@ const CopySearchAppBar: React.FC<any> = () => {
         <Divider />
         <MenuItem component={Link} to="/reservations" onClick={handleMenuClose}>
           <PageviewIcon />
-          <span style={{ marginLeft: '5px' }}>Reservations</span>
+          <span style={{ marginLeft: '5px' }}>My Reservations</span>
         </MenuItem>
         <Divider />
         <MenuItem
@@ -74,4 +70,4 @@ const CopySearchAppBar: React.FC<any> = () => {
   );
 };
 
-export default CopySearchAppBar;
+export default ReusableAppBar;

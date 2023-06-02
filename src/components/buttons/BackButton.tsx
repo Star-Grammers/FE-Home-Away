@@ -18,16 +18,16 @@ const BackButton: React.FC<BackButtonProps> = ({ to }) => {
     <Box
       sx={{
         position: 'absolute',
-        top: 50,
+        top: 80,
         left: 0,
         p: 2
       }}
     >
       <Button
         variant="outlined"
-        startIcon={<ArrowBackIcon />}
         onClick={handleBack}
       >
+        <ArrowBackIcon />
         Back
       </Button>
     </Box>

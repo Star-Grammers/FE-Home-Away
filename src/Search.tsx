@@ -6,18 +6,18 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Typography,
   InputBase,
   MenuItem,
   Menu,
   Divider
 } from '@mui/material/';
+import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import PageviewIcon from '@mui/icons-material/Pageview';
-import { AuthContext, AuthContextProps } from './Auth.tsx';
+import { AuthContext, AuthContextProps } from './store/Auth.tsx';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -29,7 +29,7 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(195),
     width: 'auto'
   }
 }));
@@ -96,7 +96,17 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography
+          <IconButton
+            size="small"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+            onClick={handleMenuOpen}
+          >
+            Dashboard
+          </IconButton>
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
@@ -109,8 +119,13 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
             style={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             Dashboard
-          </Typography>
+          </Typography> */}
           <Search>
+            {/* <Box sx={{
+
+              paddingRight: 50
+            }} */}
+            {/* > */}
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -121,6 +136,7 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
             />
+            {/* </Box> */}
           </Search>
         </Toolbar>
       </AppBar>
@@ -136,7 +152,7 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ onSearch }) => {
         <Divider />
         <MenuItem component={Link} to="/reservations" onClick={handleMenuClose}>
           <PageviewIcon />
-          <span style={{ marginLeft: '5px' }}>Reservations</span>
+          <span style={{ marginLeft: '5px' }}>My Reservations</span>
         </MenuItem>
         <Divider />
         <MenuItem

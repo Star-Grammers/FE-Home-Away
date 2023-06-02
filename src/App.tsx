@@ -2,15 +2,14 @@ import React from 'react';
 import {
   BrowserRouter, Route, Switch, Redirect
 } from 'react-router-dom';
-import './App.css';
-import Home from './Home.tsx';
-import Signin from './Signin.tsx';
-import Dashboard from './Dashboard.tsx';
-import Auth from './Auth.tsx';
-import LoginForm from './LoginForm.tsx';
+import Home from './pages/Home.tsx';
+import Signin from './pages/Signin.tsx';
+import Dashboard from './pages/Dashboard.tsx';
+import Auth from './store/Auth.tsx';
+import LoginForm from './pages/LoginForm.tsx';
 import SearchAppBar from './Search.tsx';
-import SingleListing from './SingleListing.tsx';
-import ConfirmBooking from './ConfirmBooking.tsx';
+import SingleListing from './pages/SingleListing.tsx';
+import ConfirmBooking from './pages/ConfirmBooking.tsx';
 
 const ProtectedRoute: React.FC<any> = (props) => {
   const { component: Component, path } = props;

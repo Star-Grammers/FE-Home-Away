@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import {
+  Box, Typography, Button, TextField
+} from '@mui/material/';
 import axios from 'axios';
 
 const LoginForm: React.FC = () => {
@@ -19,7 +22,6 @@ const LoginForm: React.FC = () => {
       history.push('/dashboard');
     } catch (error) {
       if (error) {
-        console.log(error, 'this is the error 2023');
         setErrorMessage(
           "Sorry, we couldn't find your account. You can either create a new account or try logging in again."
         );
@@ -33,44 +35,52 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <Box sx={{ textAlign: 'center' }}>
       <form onSubmit={handleLoginSubmit}>
-        <h1>Please enter your email and password to login :P</h1>
+        <Typography variant="h2">Please enter your email and password to login :P</Typography>
         {errorMessage && <p>{errorMessage}</p>}
-        <br />
-        <label htmlFor="email">Email</label>
-        <br />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => {
-            e.preventDefault();
-            setEmail(e.target.value);
-          }}
-        />
-        <br />
-        <label htmlFor="password">Password</label>
-        <br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => {
-            e.preventDefault();
-            setPassword(e.target.value);
-          }}
-        />
-        <br />
-        <br />
-        <button type="submit">Login</button>
+        <Typography variant="h6">Email</Typography>
+        <Box
+          sx={{ p: 1 }}
+        >
+          <TextField
+            size="small"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => {
+              e.preventDefault();
+              setEmail(e.target.value);
+            }}
+          />
+        </Box>
+        <Typography variant="h6">Password</Typography>
+        <Box
+          sx={{ p: 1 }}
+        >
+          <TextField
+            size="small"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => {
+              e.preventDefault();
+              setPassword(e.target.value);
+            }}
+          />
+        </Box>
+        <Box
+          sx={{ p: 1 }}
+        >
+          <Button type="submit" variant="outlined">Login</Button>
+        </Box>
       </form>
-      <p>
+      <Typography>
         Don&apos;t have an account?
         {' '}
         <Link to="/signup">Sign up now!</Link>
-      </p>
-    </div>
+      </Typography>
+    </Box>
   );
 };
 

@@ -5,7 +5,7 @@ import Reservations from './Reservations.tsx';
 describe('Renders reservation component correctly', () => {
   test('renders reservations', () => {
     render(<Reservations />);
-    const helloText = screen.getByText(/hello/i);
-    expect(helloText).toBeInTheDocument();
+    const intro = screen.getByText(/Thank you for booking with us!/i);
+    expect(intro).toBeInTheDocument();
   });
 });

@@ -16,7 +16,7 @@ import { AuthContext, AuthContextProps } from './store/Auth.tsx';
 
 const ReusableAppBar: React.FC<any> = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { handleLogout } = useContext(AuthContext) as AuthContextProps;
+  const { handleLogout } = useContext(AuthContext) as AuthContextProps ?? {};
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

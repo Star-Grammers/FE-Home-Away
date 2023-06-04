@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
   Box, Paper, Typography, Button
 } from '@mui/material';
@@ -16,8 +16,6 @@ export interface Reservation {
   petsCount: number;
   phoneNumber: string;
   reservationId: string;
-// TODO: add image later!
-  // image: string;
 }
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -31,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Reservations: React.FC = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
-  const { userId } = useContext(AuthContext) as AuthContextProps;
+  const { userId } = useContext(AuthContext) as AuthContextProps ?? {};
 
   const fetchReservations = async () => {
     try {
@@ -57,10 +55,6 @@ const Reservations: React.FC = () => {
     }
   };
 
-  // const editReservation = async (reservation: Reservation) => {
-
-  // };
-
   useEffect(() => {
     fetchReservations();
   }, []);
@@ -68,6 +62,8 @@ const Reservations: React.FC = () => {
   return (
     <Box>
       <ReusableAppBar />
+      <Typography variant="h2" textAlign="center">Thank you for booking with us!!!</Typography>
+      <Typography variant="h2" textAlign="center">Here is a list of your current bookings</Typography>
       <Box sx={{
         marginTop: '2rem', marginLeft: '3rem'
       }}

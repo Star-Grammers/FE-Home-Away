@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import {
   Box, Typography, Button, TextField
 } from '@mui/material/';
 import axios from 'axios';
+import { AuthContext, AuthContextProps } from '../store/Auth.tsx';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState('');
+  // const [, setUserId] = useState('');
+  const { setUserId } = useContext(AuthContext) as AuthContextProps;
 
+  // console.log(userId, 'LOGIN FORM ID');
   const handleLogin = async (loginEmail: string, loginPassword: string) => {
     try {
       const response = await axios.post('http://localhost:3030/user/login', {
         email: loginEmail,
         password: loginPassword
       });
-
+      const { _id: foundUserId } = response.data;
+      setUserId(foundUserId);
       sessionStorage.setItem('token', response.data.token);
       history.push('/dashboard');
     } catch (error) {

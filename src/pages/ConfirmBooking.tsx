@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import {
   Box, Typography, Button, TextField
 } from '@mui/material/';
@@ -7,6 +7,8 @@ import { useLocation, Link, useHistory } from 'react-router-dom';
 import ReusableAppBar from '../ReusableAppBar.tsx';
 import BackButton from '../components/buttons/BackButton.tsx';
 import ForwardButton from '../components/buttons/ForwardButton.tsx';
+import { AuthContext, AuthContextProps } from '../store/Auth.tsx';
+import { Reservation } from './Reservations/Reservations.tsx';
 
 type Listing = {
   id: number;
@@ -26,6 +28,11 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = () => {
   const [petsCount, setPetsCount] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [checkInDate, setCheckInDate] = useState('');
+  const { userId } = useContext(AuthContext) as AuthContextProps;
+
+  const editLocation = useLocation<{ reservation: Reservation }>();
+  const editReservation = editLocation.state?.reservation;
+  console.log('🚀 ~ file: ConfirmBooking.tsx:35 ~ editReservation:', editReservation);
 
   const history = useHistory();
   const location = useLocation<{ listing: Listing }>();
@@ -34,6 +41,10 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = () => {
   if (!listing) {
     return <div>Loading...</div>;
   }
+
+  // if (editReservation) {
+
+  // }
 
   const handleGuestsChange = (event: ChangeEvent<HTMLInputElement>):
     void => setGuestCount(event.target.value);
@@ -55,11 +66,10 @@ const ConfirmBooking: React.FC<ConfirmBookingProps> = () => {
         guestCount,
         petsCount,
         phoneNumber,
-        checkInDate
+        checkInDate,
+        userId
       };
-
-      await axios.post('http://localhost:3030/api/reservations', reservationData);
-
+      await axios.put('http://localhost:3030/api/reservations/creation', reservationData);
       console.log('Reservation saved successfully');
       history.push('/reservations');
     } catch (error) {

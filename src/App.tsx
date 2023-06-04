@@ -10,6 +10,7 @@ import LoginForm from './pages/LoginForm.tsx';
 import SearchAppBar from './Search.tsx';
 import SingleListing from './pages/SingleListing.tsx';
 import ConfirmBooking from './pages/ConfirmBooking.tsx';
+import Reservations from './pages/Reservations/Reservations.tsx';
 
 const ProtectedRoute: React.FC<any> = (props) => {
   const { component: Component, path } = props;
@@ -42,6 +43,7 @@ const App: React.FC = () => (
           <ProtectedRoute path="/dashboard" component={Dashboard} />
           <Route exact path="/search" component={SearchAppBar} />
           <Route exact path="/singleListing/:name" component={SingleListing} />
+          <Route exact path="/reservations" component={Reservations} />
           <Route
             exact
             path="/confirm-booking/:name"
